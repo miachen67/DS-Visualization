@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+body{
+  background: linear-gradient(225deg, hsla(54, 100%, 84%, 1) 0%, hsla(203, 69%, 84%, 1) 100%);
+  height: 100vh;
+  font-family: "IBM Plex Mono", monospace;
+}
+
+h1{
+  font-weight: 400;
+  font-size: 32px;
+}
+
+table, tbody, td{
+  border: solid;
+  border-collapse: collapse;
+}
