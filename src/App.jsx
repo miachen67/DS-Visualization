@@ -1,9 +1,22 @@
 import { useState } from 'react'
 import addition from './Add'
+import removal from './Remove'
+import finding from './Find'
+
+const Error = ({text}) => {
+  if (text == null){
+    return null
+  }
+  return (
+    <h2 className="error">{text}</h2>
+  )
+}
 
 const Title = ({title}) => {
   return(
+  <div className="title">
     <h1>{title}</h1>
+  </div>
   )
 }
 
@@ -20,7 +33,7 @@ const FormFields = ({arrayLength, func, handleSubmit, setNewElement, setNewIndex
     return (
       <>
         <p>From Index: <input type="number" min={0} max={arrayLength-1} value={newIndex} onChange={handleNewIndex}/></p>
-        <button onClick={handleSubmit}>Go!</button>
+        <button onClick={handleSubmit} className="go">Go!</button>
       </>
     )
   } else if (func == "Add") {
@@ -28,14 +41,14 @@ const FormFields = ({arrayLength, func, handleSubmit, setNewElement, setNewIndex
       <>
       <p>Number: <input type="number" value={newElement} onChange={handleNewElement}/></p>
       <p>At Index: <input type="number" min={0} max={arrayLength} value={newIndex} onChange={handleNewIndex}/> </p>
-      <button onClick={handleSubmit}>Go!</button>
+      <button onClick={handleSubmit} className="go">Go!</button>
       </>
     )
   } else if (func == "Find") {
     return (
       <>
         <p>Number: <input type="number" value={newElement} onChange={handleNewElement}/></p>
-        <button onClick={handleSubmit}>Go!</button>
+        <button onClick={handleSubmit} className="go">Go!</button>
       </>
     )
   } else {
@@ -43,18 +56,42 @@ const FormFields = ({arrayLength, func, handleSubmit, setNewElement, setNewIndex
   }
 }
 
-const SelectFuncForm = ({values, array, setFunc, func, baseLength, newElement, setNewElement, newIndex, setNewIndex, setArray, setBaseLength}) => {
+const SelectFuncForm = ({values, array, setFunc, func, baseLength, newElement, setNewElement, newIndex, setNewIndex, setArray, setBaseLength, setErrorMessage}) => {
   const handleSubmit = async (event) => {
     event.preventDefault()
     console.log("submit")
     if (func == "Add"){
-      console.log(array)
-      addition.add(newElement, newIndex, array, length(array), setArray, baseLength, setBaseLength)
-    } 
+      if (addition.add(newElement, newIndex, array, length(array), setArray, baseLength, setBaseLength, setErrorMessage) == -1){
+        setErrorMessage("Error: Index out of bounds")
+        setTimeout(() => {
+          setErrorMessage(null)
+        }, 3000)
+      }
+    } else if (func == "Remove"){
+      if (removal.remove(newIndex, array, setArray, length(array)) == -1){
+        setErrorMessage("Error: Index out of bounds")
+        setTimeout(() => {
+          setErrorMessage(null)
+        }, 3000)
+      }
+    } else if (func == "Find"){
+      let result = finding.find(length(array), array, newElement)
+      if (result == -1){
+        setErrorMessage("Not Found")
+        setTimeout(() => {
+          setErrorMessage(null)
+        }, 3000)
+      } else {
+        document.getElementById(result).style.backgroundColor = '#75d4e7'
+        setTimeout(() => {
+          document.getElementById(result).style.backgroundColor = 'transparent'
+        }, 3000)
+      }
+    }
   }
 
   return (
-    <form>
+    <form className="form">
       {values.map(value => (
       <button key={value} value={value} type="button" onClick={() => setFunc(value)}>{value}</button>
     ))}
@@ -75,12 +112,12 @@ const length = (array) => {
 
 const Array = ({array}) => {
   return (
-    <table>
+    <table className='array'>
       <tbody>
         <tr>
           <td>Elements:</td>
           {array.map(element => (
-            <td key={element.index}>{element.number}</td>
+            <td key={element.index} id={element.index}>{element.number}</td>
           ))}
         </tr>
         <tr>
@@ -95,6 +132,7 @@ const Array = ({array}) => {
 }
 
 const App = () => {
+  const [errorMesage, setErrorMessage] = useState(null)
   const [newElement, setNewElement] = useState(0)
   const [newIndex, setNewIndex] = useState(0)
   const [baseLength, setBaseLength] = useState(5)
@@ -123,9 +161,10 @@ const App = () => {
   ])
   return (
     <>
-      <Title title={"ArrayList"}/> 
-      <SelectFuncForm values={["Add", "Remove", "Find"]} array={array} setFunc={setFunc} func={func} baseLength ={baseLength} newElement={newElement} setNewElement={setNewElement} newIndex={newIndex} setNewIndex={setNewIndex} setArray={setArray} setBaseLength={setBaseLength}/>
+      <Title title={"ArrayList (Java Implementation)"}/> 
+      <SelectFuncForm values={["Add", "Remove", "Find"]} array={array} setFunc={setFunc} func={func} baseLength ={baseLength} newElement={newElement} setNewElement={setNewElement} newIndex={newIndex} setNewIndex={setNewIndex} setArray={setArray} setBaseLength={setBaseLength} setErrorMessage={setErrorMessage}/>
       <Array array={array}/> 
+      <Error text={errorMesage}/> 
     </>
   )
 }

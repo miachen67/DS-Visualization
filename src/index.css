@@ -11,7 +11,69 @@ h1{
   font-size: 32px;
 }
 
-table, tbody, td{
-  border: solid;
+.title{
+  width: 100vw;
+  text-align: center;
+}
+
+.form{
+  display: flex;
+  justify-content: center;
+}
+
+input{
+  margin: 15px;
+}
+.error{
+  color: red;
+  font-size: 16px;
+  font-weight: 400;
+  padding-left: 20px;
+}
+
+td{
+  width: 60px;
+  height: 60px;
+  text-align: center;
+}
+
+.array{
+  padding: 2vw;
+  margin: auto;
+} 
+
+.array tbody tr td:nth-child(1){
+  border: none;
+  padding-right: 15px;
+
+}
+
+.array tbody tr:nth-child(2) td{
+  border: none;
+}
+
+.array tbody tr td{
   border-collapse: collapse;
+  border: solid;
+}
+
+button{
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 15px;
+  border-width: 1px;
+  cursor: pointer;
+}
+
+button:active,
+button:focus {
+  background-color: #3A81EA; 
+  color: white;
+  /* Change background color when clicked or focused */
+}
+
+.go{
+  background-color: #75d4e7; 
+  color: black;
 }
