@@ -1,27 +1,31 @@
-const remove = (index, array, setArray, length) => {
+const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+const remove = async (index, array, setArray, length, setErrorMessage) => {
     console.log(array)
     if (index < 0 || index > length-1){
         return -1
     } else {
         let newArray = JSON.parse(JSON.stringify(array))
-        console.log('yay')
-        console.log('index', index)
-        console.log('length', length)
-        console.log('newarray 2', newArray[2].number)
-
         for (let i = Number(index); i < length-1; i++){
-            console.log("i", i)
-            console.log("newArray=", newArray)
-            console.log("array=", array)
-            console.log('newarray[2]', newArray[2])
-            console.log("type of i+1", typeof(i+1), "typeof i", typeof(i))
+            document.getElementById(i+1).style.backgroundColor='#FF7940'
+            await wait(1000)
             newArray[i].number = newArray[i+1].number
+            setArray([...newArray])
+            document.getElementById(i+1).style.backgroundColor = 'transparent';
+            document.getElementById(i).style.backgroundColor = '#75d4e7';
+            await wait(1000)
         }
         newArray[length-1] = {
             index: length-1,
             number: null
         }
         setArray(newArray)
+        setErrorMessage(`${index} removed from array`)
+        await wait (3000)
+        for (let i = 0; i < length; i++){
+            document.getElementById(i).style.backgroundColor = 'transparent';
+        }
+        setErrorMessage(null)
     }
 }
 

@@ -68,23 +68,19 @@ const SelectFuncForm = ({values, array, setFunc, func, baseLength, newElement, s
         }, 3000)
       }
     } else if (func == "Remove"){
-      if (removal.remove(newIndex, array, setArray, length(array)) == -1){
+      if (removal.remove(newIndex, array, setArray, length(array), setErrorMessage) == -1){
         setErrorMessage("Error: Index out of bounds")
         setTimeout(() => {
           setErrorMessage(null)
         }, 3000)
       }
     } else if (func == "Find"){
-      let result = finding.find(length(array), array, newElement)
+      let result = await finding.find(length(array), array, newElement, setErrorMessage)
+      console.log("result", result)
       if (result == -1){
         setErrorMessage("Not Found")
         setTimeout(() => {
           setErrorMessage(null)
-        }, 3000)
-      } else {
-        document.getElementById(result).style.backgroundColor = '#75d4e7'
-        setTimeout(() => {
-          document.getElementById(result).style.backgroundColor = 'transparent'
         }, 3000)
       }
     }
@@ -117,7 +113,7 @@ const Array = ({array}) => {
         <tr>
           <td>Elements:</td>
           {array.map(element => (
-            <td key={element.index} id={element.index}>{element.number}</td>
+            <td key={element.index} id={element.index} className="arrayElem">{element.number}</td>
           ))}
         </tr>
         <tr>
