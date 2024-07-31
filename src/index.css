@@ -77,3 +77,19 @@ button:focus {
   background-color: #75d4e7; 
   color: black;
 }
+
+.navBar{
+  padding: 30px;
+}
+
+.navLinks{
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 5px;
+  margin: 5px;
+  text-decoration: none;
+  color: white;
+  background-color: rgb(0, 26, 44);
+}
