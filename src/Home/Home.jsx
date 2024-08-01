@@ -22,8 +22,10 @@ const Home = () => {
       <form onSubmit={handleSubmit}>
         <select name='Data Structures Dropdown' id='dsdropdown' onChange={handleSelection} value={selectedValue}>
           <option value='ArrayList'>ArrayLists</option>
-          <option value='slinkedlist' disabled>Singly Linked Lists</option>
+          <option value='SinglyLinkedList' disabled>Singly Linked Lists</option>
           <option value='dlinkedlist' disabled>Doubly Linked Lists</option>
+          <option value='Stacks'>Stacks</option>
+          <option value='Queues'>Queues</option>
         </select>
         <input type="submit" value="go!" id="goButton" />
       </form>

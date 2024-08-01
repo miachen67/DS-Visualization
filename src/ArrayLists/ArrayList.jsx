@@ -2,23 +2,8 @@ import { useState } from 'react'
 import addition from './Add'
 import removal from './Remove'
 import finding from './Find'
-
-const Error = ({text}) => {
-  if (text == null){
-    return null
-  }
-  return (
-    <h2 className="error">{text}</h2>
-  )
-}
-
-const Title = ({title}) => {
-  return(
-  <div className="title">
-    <h1>{title}</h1>
-  </div>
-  )
-}
+import Title from '../components/Title'
+import Error from '../components/Error'
 
 const FormFields = ({arrayLength, func, handleSubmit, setNewElement, setNewIndex, newIndex, newElement}) => {
   const handleNewElement = (event) => {
@@ -157,7 +142,7 @@ const ArrayList = () => {
   ])
   return (
     <>
-      <Title title={"ArrayList (Java Implementation)"}/> 
+      <Title title={"ArrayList"}/> 
       <SelectFuncForm values={["Add", "Remove", "Find"]} array={array} setFunc={setFunc} func={func} baseLength ={baseLength} newElement={newElement} setNewElement={setNewElement} newIndex={newIndex} setNewIndex={setNewIndex} setArray={setArray} setBaseLength={setBaseLength} setErrorMessage={setErrorMessage}/>
       <Array array={array}/> 
       <Error text={errorMesage}/> 
