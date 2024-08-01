@@ -80,17 +80,19 @@ const QueuePage = () => {
     if (func === ""){
       return
     } else if (func === "Enqueue"){
-      document.getElementById(currQueue.length-1).style.backgroundColor = '#75d4e7';
+      document.getElementById(currQueue[currQueue.length-1].index).style.backgroundColor = '#75d4e7';
       setTimeout(() => {
-        document.getElementById(currQueue.length-1).style.backgroundColor = 'transparent';
+        document.getElementById(currQueue[currQueue.length-1].index).style.backgroundColor = 'transparent';
       }, 3000)
     } else if (func === "Dequeue") {
-      document.getElementById(0).style.backgroundColor = '#FF7940';
-      setTimeout(() => {
-        document.getElementById(0).style.backgroundColor = 'transparent';
-      }, 3000)
+      if (currQueue.length != 0) {
+        document.getElementById(currQueue[0].index).style.backgroundColor = '#FF7940';
+        setTimeout(() => {
+          document.getElementById(currQueue[0].index).style.backgroundColor = 'transparent';
+        }, 3000)
+      }
     }
-  }, [currQueue, func])
+  }, [currQueue])
 
   return (
     <>

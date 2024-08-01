@@ -85,10 +85,12 @@ const StackPage = () => {
         document.getElementById(currStack.length-1).style.backgroundColor = 'transparent';
       }, 3000)
     } else if (func === "Pop") {
-      document.getElementById(currStack.length-1).style.backgroundColor = '#FF7940';
-      setTimeout(() => {
-        document.getElementById(currStack.length-1).style.backgroundColor = 'transparent';
-      }, 3000)
+      if (currStack.length != 0) {
+        document.getElementById(currStack.length-1).style.backgroundColor = '#FF7940';
+        setTimeout(() => {
+          document.getElementById(currStack.length-1).style.backgroundColor = 'transparent';
+        }, 3000)
+      }
     }
   }, [currStack])
 
