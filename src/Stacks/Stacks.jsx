@@ -72,11 +72,7 @@ const StackPage = () => {
   const [currStack, setCurrStack] = useState([
     {
       index: 0,
-      number: 1
-    },
-    {
-      index: 1,
-      number: 2
+      number: 0
     }
   ])
 

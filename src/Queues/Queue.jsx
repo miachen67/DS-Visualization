@@ -72,11 +72,7 @@ const QueuePage = () => {
   const [currQueue, setCurrQueue] = useState([
     {
       index: 0,
-      number: 1
-    },
-    {
-      index: 1,
-      number: 2
+      number: 0
     }
   ])
 
