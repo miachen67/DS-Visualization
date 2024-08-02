@@ -1,8 +1,8 @@
-# Array List Visualization
+# Data Structures Visualization
 
-This website assists in visualizing the add, remove, find methods/operations for ArrayLists. 
+This website assists in visualizing the add, remove, find etc. methods/operations for ArrayLists, Stacks, Queues. 
 
-To start, select a method: add, remove or find. I would recommend adding some elements to the array first! 
+For arrays, to start, select a method: add, remove or find. I would recommend adding some elements to the array first! 
 ## Add
 1. Click Add.
 2. Input a number. This will be the integer added to your ArrayList.
